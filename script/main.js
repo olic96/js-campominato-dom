@@ -38,15 +38,17 @@ console.log(bombs);
 
 // 2. creo un array dove verranno salvati i numeri dell'utente
 const userNumbers = [];
-// . FINO A CHE userNumbers è < di 20 (le volte che può inserire un numero), chiedo all'utente un numero. SE il numero non è gia stato inserito pusho userNumber in userNumbers.
+// . FINO A CHE userNumbers è < di 5 (le volte che può inserire un numero), chiedo all'utente un numero. SE il numero non è gia stato inserito pusho userNumber in userNumbers.
 while (userNumbers.length < 5) {
     let userNumber = Number(prompt("inserisci un numero da 1 a 5"));
     if (userNumbers.includes(userNumber) === false) {
-        userNumbers.push(userNumber);
-        // 3. ALTRIMENTI SE un elemento di userNubers === bombs la partita termina, ALTRIMENTI la partita prosegue
-    } else if (userNumbers[i] === bombs[i]) {
-        console.log("Hai perso")
+        for (let i = 0; i < bombs[i].length; i++) {
+            if (userNumber !== bombs[i]) {
+                userNumbers.push(userNumber);
+            } else {
+                console.log("hai perso");
+            }
+        }
     }
 }
 console.log(userNumbers);
-
