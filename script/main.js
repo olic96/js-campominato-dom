@@ -43,11 +43,10 @@ while (userNumbers.length < 5) {
     let userNumber = Number(prompt("inserisci un numero da 1 a 5"));
     if (userNumbers.includes(userNumber) === false) {
         userNumbers.push(userNumber);
+        // 3. ALTRIMENTI SE un elemento di userNubers === bombs la partita termina, ALTRIMENTI la partita prosegue
+    } else if (userNumbers[i] === bombs[i]) {
+        console.log("Hai perso")
     }
 }
 console.log(userNumbers);
-
-
-
-
 
