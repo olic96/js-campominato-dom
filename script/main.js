@@ -19,18 +19,6 @@ function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function randomNumberList(nElements, min, max) {
-    const bombs = [];
-    while (bombs.length < 16) {
-        let bomb = randomNumber(1, 20);
-        if (bombs.includes(bomb) === false) {
-           return bombs.push(bomb);
-        }
-    }
-    console.log(bombs);
-}
-
-
 // 2. chiedo all'utente 100 - 64 volte di inserire un numero tra 1 e 100 che non può ripetere;
 // 3. SE il numero che inserisce è presente nella lista dei 16 numeri scelti randomicamente la partita termina, ALTRIMENTI richiedo un altro numero;
 // 4. SE viene inserito un numero vietato la partita termina o SE raggiunge il numero massimo di numeri disponibili;
@@ -40,12 +28,26 @@ function randomNumberList(nElements, min, max) {
 
 // 1.
 const bombs = [];
-while (bombs.length < 16) {
+while (bombs.length < 5) {
     let bomb = randomNumber(1, 20);
     if (bombs.includes(bomb) === false) {
         bombs.push(bomb);
     }
 }
 console.log(bombs);
+
+// 2. creo un array dove verranno salvati i numeri dell'utente
+const userNumbers = [];
+// . FINO A CHE userNumbers è < di 20 (le volte che può inserire un numero), chiedo all'utente un numero. SE il numero non è gia stato inserito pusho userNumber in userNumbers.
+while (userNumbers.length < 5) {
+    let userNumber = Number(prompt("inserisci un numero da 1 a 5"));
+    if (userNumbers.includes(userNumber) === false) {
+        userNumbers.push(userNumber);
+    }
+}
+console.log(userNumbers);
+
+
+
 
 
