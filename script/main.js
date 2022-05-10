@@ -28,8 +28,8 @@ function randomNumber(min, max) {
 
 // 1.
 const bombs = [];
-while (bombs.length < 16) {
-    let bomb = randomNumber(1, 100);
+while (bombs.length < 5) {
+    let bomb = randomNumber(1, 20);
     if (bombs.includes(bomb) === false) {
         bombs.push(bomb);
     }
@@ -42,14 +42,13 @@ let attemps = [];
 let bombExploded = false;
 // . FINO A CHE bombExploded === true && attemps < num chiedo all'user di inserire un numero che non può ripetere. SE userNumer è incluso in bombs bombExploded === true, ALTRIMENTI SE attemps include userNumber, il numero è gia stato inserito, ALTRIMENTI push in numbersUser
 
-while (!bombExploded && attemps.length < 100 - 64) {
+while (!bombExploded && attemps.length < 10) {
     let userNumber;
     do {
         userNumber = Number(prompt("Insert a number"));
-    } while (isNaN(userNumber) || userNumber < 1 || userNumber > 100);
+    } while (isNaN(userNumber) || userNumber < 1 || userNumber > 20);
     if(bombs.includes(userNumber)) {
         bombExploded = true;
-        alert(`Game Over! Your score is: ${attemps.length}`);
     } else if (attemps.includes(userNumber)) {
         alert("no valid number");
     } else {
@@ -57,3 +56,9 @@ while (!bombExploded && attemps.length < 100 - 64) {
     }
 }
 // .5
+if (bombExploded === true) {
+    alert(`Game Over! Your score is: ${attemps.length}`);
+} else {
+    alert(`Game Over! You Won! Your score is: ${attemps.length}`);
+}
+
