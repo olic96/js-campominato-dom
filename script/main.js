@@ -28,27 +28,32 @@ function randomNumber(min, max) {
 
 // 1.
 const bombs = [];
-while (bombs.length < 5) {
-    let bomb = randomNumber(1, 20);
+while (bombs.length < 16) {
+    let bomb = randomNumber(1, 100);
     if (bombs.includes(bomb) === false) {
         bombs.push(bomb);
     }
 }
 console.log(bombs);
 
-// 2. creo un array dove verranno salvati i numeri dell'utente
-const userNumbers = [];
-// . FINO A CHE userNumbers è < di 5 (le volte che può inserire un numero), chiedo all'utente un numero. SE il numero non è gia stato inserito pusho userNumber in userNumbers.
-while (userNumbers.length < 5) {
-    let userNumber = Number(prompt("inserisci un numero da 1 a 5"));
-    if (userNumbers.includes(userNumber) === false) {
-        for (let i = 0; i < bombs[i].length; i++) {
-            if (userNumber !== bombs[i]) {
-                userNumbers.push(userNumber);
-            } else {
-                console.log("hai perso");
-            }
-        }
+// 2. 3. 4. creo un array dove verranno salvati i tentativi dell'utente
+let attemps = [];
+// . creo un variaile che mi verificherà se il numero scelto è una boma
+let bombExploded = false;
+// . FINO A CHE bombExploded === true && attemps < num chiedo all'user di inserire un numero che non può ripetere. SE userNumer è incluso in bombs bombExploded === true, ALTRIMENTI SE attemps include userNumber, il numero è gia stato inserito, ALTRIMENTI push in numbersUser
+
+while (!bombExploded && attemps.length < 100 - 64) {
+    let userNumber;
+    do {
+        userNumber = Number(prompt("Insert a number"));
+    } while (isNaN(userNumber) || userNumber < 1 || userNumber > 100);
+    if(bombs.includes(userNumber)) {
+        bombExploded = true;
+        alert(`Game Over! Your score is: ${attemps.length}`);
+    } else if (attemps.includes(userNumber)) {
+        alert("no valid number");
+    } else {
+        attemps.push(userNumber);
     }
 }
-console.log(userNumbers);
+// .5
