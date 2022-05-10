@@ -26,10 +26,30 @@ function randomNumber(min, max) {
 
 /* ------ MAIN ------*/ 
 
+// BONUS:
+// stabilisco delle variaili di difficoltà che verrà calcolata in base al numero di numeri e bombe
+let mod;
+let easy = 0;
+let medium = 1;
+let hard = 2;
+let difficulty;
+// chiedo all'utente di scegliere una difficoltà fino a quando non sceglie un numero tra 0 e 2
+do {
+   mod = Number(prompt("Choose a mod"))
+} while (isNaN(mod) || mod < 0 || mod > 2);
+
+if (mod === easy) {
+    difficulty = 100;
+} else if (mod === medium) {
+    difficulty = 80;
+} else {
+    difficulty = 50;
+}
+
 // 1.
 const bombs = [];
-while (bombs.length < 5) {
-    let bomb = randomNumber(1, 20);
+while (bombs.length < 16) {
+    let bomb = randomNumber(1, 100);
     if (bombs.includes(bomb) === false) {
         bombs.push(bomb);
     }
@@ -42,11 +62,11 @@ let attemps = [];
 let bombExploded = false;
 // . FINO A CHE bombExploded === true && attemps < num chiedo all'user di inserire un numero che non può ripetere. SE userNumer è incluso in bombs bombExploded === true, ALTRIMENTI SE attemps include userNumber, il numero è gia stato inserito, ALTRIMENTI push in numbersUser
 
-while (!bombExploded && attemps.length < 10) {
+while (!bombExploded && attemps.length < difficulty) {
     let userNumber;
     do {
         userNumber = Number(prompt("Insert a number"));
-    } while (isNaN(userNumber) || userNumber < 1 || userNumber > 20);
+    } while (isNaN(userNumber) || userNumber < 1 || userNumber > 100);
     if(bombs.includes(userNumber)) {
         bombExploded = true;
     } else if (attemps.includes(userNumber)) {
